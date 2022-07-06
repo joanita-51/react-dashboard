@@ -19,6 +19,8 @@ export const ContextProvider = ({children}) =>{
         setisClicked({...initialState,[clicked]:true})
     }
 
+    const [screenSize, setScreenSize] = useState(undefined)
+
 
     return (
         <StateContext.Provider 
@@ -27,7 +29,9 @@ export const ContextProvider = ({children}) =>{
                 setActiveMenu,
                 isClicked, // to get acess to them inside of the navbar
                 setisClicked,
-                handleClick
+                handleClick,
+                screenSize,
+                setScreenSize,
             }}
         >
             {children}

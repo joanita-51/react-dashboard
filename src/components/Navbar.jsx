@@ -13,16 +13,36 @@ const NavButton = ({title, customFunc, icon, color, dotColor}) => (
   <TooltipComponent content={title} position='BottomCenter'>
     <button type='button' onClick={customFunc} style={{color}} className='relative text-xl rounded-full p-3 hover:bg-light-gray'>
 
-    <span style={{background: dotColor}} className='absolute inline-flex rounded-full h-2 w-2 right-2 top-2'>
+      <span style={{background: dotColor}} className='absolute inline-flex rounded-full h-2 w-2 right-2 top-2'>  </span>
       {icon}
-    </span>
-
+  
     </button>
   </TooltipComponent>
 )
 
 const Navbar = () => {
   const {activeMenu, setActiveMenu, isClicked, setIsCicked, handleClick} = useStateContext();
+
+  useEffect(()=>{
+    const handleResize = () => setScreenSize(window.innerWidth);//to figure out the screen size when the page loads
+    
+    window.addEventListener('resize', handleResize) //to track all the screen sizes options
+
+    handleResize(); //called to figure out the initial width
+
+    //to remove the event listener
+    return ()=> window.removeEventListener('resize', handleResize);
+
+  },[]);
+
+  //to keep track of the changes
+  useEffect(()=>{
+    if(screenSize <= 900){
+      setActiveMenu(false);
+    } else {
+      setActiveMenu(true);
+    }
+  }, [screenSize])
 
   return (
     <div className='flex justify-between p-2 md:mx-6 relative'>
