@@ -13,6 +13,7 @@ const Employees = () => {
         allowPaging //for pagination
         allowSorting //for sorting
         toolbar={['Search']} //for search
+        width ='auto'
       >
         <ColumnsDirective>
           {employeesGrid.map((item,index)=>(
