@@ -21,7 +21,7 @@ const NavButton = ({title, customFunc, icon, color, dotColor}) => (
 )
 
 const Navbar = () => {
-  const {activeMenu, setActiveMenu, isClicked, setIsCicked, handleClick} = useStateContext();
+  const {activeMenu, setActiveMenu, isClicked, setIsCicked, handleClick, setScreenSize, screenSize} = useStateContext();
 
   useEffect(()=>{
     const handleResize = () => setScreenSize(window.innerWidth);//to figure out the screen size when the page loads
