@@ -24,18 +24,22 @@ export const ContextProvider = ({children}) =>{
 
     const [currentColor, setCurrentColor] = useState('#03C9D7')
 
-    const [currentMode, setcurrentMode] = useState('Light')
+    const [currentMode, setCurrentMode] = useState('Light')
 
     const [themeSettings, setThemeSettings] = useState(false)
 
     const setMode = (e) => {
         setCurrentMode(e.target.value);
         localStorage.setItem('themeMode', e.target.value)
+        // to close the side bar imediately the theme chosen
+        setThemeSettings(false);
     }
 
-    const setColor = (e) => {
-        setCurrentColor(e.target.value);
-        localStorage.setItem('colorMode', e.target.value)
+    const setColor = (color) => {
+        setCurrentColor(color);
+        localStorage.setItem('colorMode', color)
+        // to close the side bar imediately the theme chosen
+        setThemeSettings(false);
     }
 
 
@@ -51,8 +55,8 @@ export const ContextProvider = ({children}) =>{
                 setScreenSize,
                 currentColor,
                 currentMode,
-                setCurrentColor,
-                setcurrentMode,
+                setColor,
+                setMode,
                 themeSettings,
                 setThemeSettings
             }}
